@@ -13,8 +13,12 @@ public class RecursiveMethods {
 	 */
 	public static double geometricSum(int n) {
 		
-			// FIXME compute the geometric sum for the first n terms recursively
+		// FIXME compute the geometric sum for the first n terms recursively
+		if(n == 0) {
 			return 0;
+		}else {
+			return geometricSum(n-1) + Math.pow(0.5, n);
+			}
 		
 	}
 
@@ -31,6 +35,14 @@ public class RecursiveMethods {
 	public static void circlesUponCircles(double xCenter, double yCenter, double radius, double radiusMinimumDrawingThreshold) {
 		
 		// FIXME complete the recursive drawing
+		if(radius <= radiusMinimumDrawingThreshold) {
+		}else{
+			StdDraw.circle(xCenter, yCenter, radius);
+			circlesUponCircles(xCenter + radius, yCenter, radius/3.0, radiusMinimumDrawingThreshold);
+			circlesUponCircles(xCenter - radius, yCenter, radius/3.0, radiusMinimumDrawingThreshold);
+			circlesUponCircles(xCenter, yCenter + radius, radius/3.0, radiusMinimumDrawingThreshold);
+			circlesUponCircles(xCenter, yCenter - radius, radius/3.0, radiusMinimumDrawingThreshold);
+		}
 	}
 	
 
@@ -40,13 +52,28 @@ public class RecursiveMethods {
 	 * @param array the array to create a reverse of, not to be mutated
 	 * @return an array with the same data as the input but it reverse order
 	 */
+
 	public static int[] toReversed(int[] array) {
-		
-			// FIXME create a helper method that can recursively reverse the given array
-			return new int[0];
+		int[] reversed = new int[array.length];
+		toReversedh(reversed, array, 0);
+		// FIXME create a helper method that can recursively reverse the given array
+		return new int[0];
 		
 	}
-
+	public static int[] toReversedh(int[] reversed, int[] array, int index) {
+		if (index > array.length) {
+			return reversed;
+		}else {
+			reversed[index] = array[array.length -1];
+			index++;
+			return reversed;
+		}
+		
+		
+		// FIXME create a helper method that can recursively reverse the given array
+//		return new int[0];
+	}
+	
 	/**
 	 * This method uses recursion to compute the greatest common divisor
 	 * for the two input values
